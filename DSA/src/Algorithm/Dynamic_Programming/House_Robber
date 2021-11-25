@@ -1,0 +1,28 @@
+package Algorithm.Dynamic_Programming;
+
+class House_Robber{
+    public int rob(int[] nums) {
+        int l = nums.length;
+
+        if(l==0)
+            return 0;
+        if(l==1)
+            return nums[0];
+        if(l==2)
+            return Math.max(nums[0],nums[1]);
+
+        int zeroth = nums[0];
+        int first = nums[1];
+        int b;
+        for(int i=2;i<=l;i++){
+           nums[i]  = Math.max(nums[i] + nums[i-2] , nums[i-1]);
+        }
+        return Math.max(nums[l-1], nums[l-2]);
+    }
+
+    public static void main(String args[]){
+        House_Robber h = new House_Robber();
+        System.out.println(h.rob(new int[] {1,2,3,1}));
+    }
+
+}
